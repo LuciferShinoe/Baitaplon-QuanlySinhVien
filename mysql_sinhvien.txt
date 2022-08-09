@@ -1,0 +1,42 @@
+Create Database sinhvien;
+
+use sinhvien;
+
+CREATE TABLE lophoc (
+    maLopHoc int(10) PRIMARY KEY,
+    tenLopHoc varchar(255),
+    namTaoLop int(10)
+    );
+
+CREATE TABLE sinhvien (
+    MaSV int(10) PRIMARY KEY AUTO_INCREMENT,
+    maLopHoc int(10),
+    Ten varchar(255),
+    NamSinh int(10),
+    CanNang int(10),
+    NhomMau char,
+    GioiTinh int(10)
+CONSTRAINT maLopHoc
+  FOREIGN KEY (maLopHoc)
+  REFERENCES lophoc (maLopHoc)
+    );
+	
+
+
+CREATE TABLE monhoc (
+    maMonHoc int(10) PRIMARY KEY AUTO_INCREMENT,
+    tenMonHoc varchar(255)
+    );
+	
+CREATE TABLE ketquathi (
+    MaSV int(10) PRIMARY KEY,
+    maLopHoc int(10),
+    maMonHoc int(10),
+    Diem int(10)
+CONSTRAINT maLopHoc
+  FOREIGN KEY (maLopHoc)
+  REFERENCES lophoc (maLopHoc)
+CONSTRAINT maMonHoc
+  FOREIGN KEY (maMonHoc)
+  REFERENCES monhoc (maMonHoc)
+    );
